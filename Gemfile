@@ -29,3 +29,5 @@ end
 
 gem 'tzinfo-data'
 gem 'dotenv-rails', require: 'dotenv/rails-now'
+gem 'devise'
+
