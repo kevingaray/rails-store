@@ -1,0 +1,22 @@
+<h1>Create a new Item</h1>
+
+<%= form_with scope: :item, url:items_path, local: true do |f| %>
+  <p>
+    <%= f.label :name %></br>
+    <%= f.text_field :name %>
+  </p>
+
+  <p>
+    <%= f.label :price %></br>
+    <%= f.text_field :price %>
+  </p>
+
+  <p>
+    <%= f.label :stock %></br>
+    <%= f.text_field :stock %>
+  </p>
+
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
