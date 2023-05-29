@@ -1,0 +1,22 @@
+<h2 class="text-center mt-4"><%= @item.name %></h2>
+<div class="container">
+	<div class="row justify-content-md-center">
+		<div class="col-8 mt-4">
+			<div class="card text-center shadow mb-5 bg-white rounded">
+				<div class="card-body">
+          <div class="card-text text-left">
+            <p><strong>ID: <%= @item.id%> </strong></p>
+          </div>
+					<div class="card-text text-left">
+            <p><strong>Price: <%= number_to_currency(@item.price) %> </strong></p>
+          </div>
+          <div class="card-text text-left">
+            <p><strong>Stock: <%= @item.stock%></strong></p>
+          </div>
+					<%= link_to "Edit", "#", class: "btn btn-outline-info" %>
+					<%= link_to "Delete", "#", class: "btn btn-outline-danger", method: :delete, data: {confirm: "Are you sure?"} %>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
