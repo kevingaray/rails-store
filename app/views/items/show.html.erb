@@ -13,7 +13,7 @@
           <div class="card-text text-left">
             <p><strong>Stock: <%= @item.stock%></strong></p>
           </div>
-					<%= link_to "Edit", "#", class: "btn btn-outline-info" %>
+					<%= link_to "Edit", edit_item_path(@item), class: "btn btn-primary" %>
 					<%= link_to "Delete", "#", class: "btn btn-outline-danger", method: :delete, data: {confirm: "Are you sure?"} %>
 				</div>
 			</div>
