@@ -1,4 +1,6 @@
 class ItemsController < ApplicationController
+  before_action :verify_is_support, only: %i[edit update]
+  before_action :verify_is_admin, only: %i[new create destroy]
 
   def index
     @items = Item.search(params[:search])
