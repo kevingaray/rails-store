@@ -1,0 +1,45 @@
+<h1>Cart </h1>
+
+
+<table class="table">
+	<thead>
+		<tr> 
+      <th scope="col">Item</th>
+      <th scope="col">Price</th>
+			<th scope="col">Quantity</th>
+      <th scope="col">Total Price</th>
+      <th scope="col">Actions</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @cart.line_items.each do |line_item| %>
+			<tr>
+        <td><%= line_item.item.name %>  (stock :  <%= line_item.item.stock %>)</td>
+        <td><%= number_to_currency(line_item.item.price) %></td>
+        <td><%= line_item.quantity %></td>
+        <td><%= number_to_currency(line_item.total_price) %></td>
+        <td>
+            <%= link_to "Add one", line_item_add_path(:id => line_item), 
+              method: :post, class: "btn btn-success" %>
+            <%= link_to "Reduce one", line_item_reduce_path(:id => line_item),
+              method: :post, class: "btn btn-warning"%>
+            <%= link_to "Remove item", line_item_path(line_item),
+              method: :delete, class: "btn btn-dark" %>
+        </td>
+      </tr>
+		<% end %>
+	</tbody>
+</table>
+
+<h2>Sub total : <%= @cart.sub_total %></h2>
+
+<% if !current_user %>
+  <p>You need to log in</p>
+<% elsif @cart.line_items.size == 0 %>
+  <p>Cart is empty </p>
+<% else %>
+  <%# <%= button_to "Buy now!", checkout_create_path, remote: true, data: { disable_with: "validating..."}, class: "btn btn-primary btn-lg" %>
+  <br>
+  <%= link_to "Empty cart", cart_path(@current_cart),method: :delete, 
+  data: {confirm: "Are you sure?"}, class: "btn btn-dark btn-lg" %>
+<% end %>

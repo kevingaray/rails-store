@@ -10,10 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_05_29_172507) do
+ActiveRecord::Schema.define(version: 2023_05_31_151640) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "carts", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "items", force: :cascade do |t|
     t.string "name"
@@ -33,6 +38,24 @@ ActiveRecord::Schema.define(version: 2023_05_29_172507) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["item_id"], name: "index_likes_on_item_id"
     t.index ["user_id"], name: "index_likes_on_user_id"
+  end
+
+  create_table "line_items", force: :cascade do |t|
+    t.integer "quantity", default: 1
+    t.bigint "item_id", null: false
+    t.integer "cart_id"
+    t.integer "order_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["item_id"], name: "index_line_items_on_item_id"
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.boolean "accepted", default: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -56,4 +79,6 @@ ActiveRecord::Schema.define(version: 2023_05_29_172507) do
 
   add_foreign_key "likes", "items"
   add_foreign_key "likes", "users"
+  add_foreign_key "line_items", "items"
+  add_foreign_key "orders", "users"
 end

@@ -9,6 +9,7 @@ class User < ApplicationRecord
   validates :last_name, presence: true
   
   has_many :likes, dependent: :destroy
+  has_many :orders
 
   def admin?
     admin == true
