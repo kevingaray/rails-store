@@ -7,12 +7,10 @@
 			<th scope="col">Item</th>
 			<th scope="col">Price</th>
 			<th scope="col">Stock</th>
-      <% if current_user && current_user.admin?  %>
-        <th colspan = "2" scope="col" class="text-center">Actions</th>
-      <% else %>
-        <th scope="col">Actions</th>
+			<th>Actions</th>
+      <% unless current_user && current_user.support? %>
+        <th>Add to cart</th>  
       <% end %>
-
       <th scope="col">Likes</th>
 		</tr>
 	</thead>
@@ -23,13 +21,14 @@
 				<td><%= item.name %></td>
         <td><%= number_to_currency(item.price) %></td>
         <td><%= item.stock %></td>
-        <% if current_user && current_user.admin? %>
-          <td><%= link_to "Edit", edit_item_path(item), class: "btn btn-primary" %></td>
-          <td><%= link_to "Delete", item_path(item), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger" %></td>
-				<% else %>
-          <td><%= link_to "Add cart", item_path(item), class: "btn btn-success" %></td>
+				<td><%= link_to "View", item_path(item), class: "btn btn-success" %></td>
+        <% unless current_user && current_user.support? %>
+          <% if item.stock > 0 %>
+            <td><%= link_to "Add cart", item_path(item), class: "btn btn-success" %></td>
+          <% else %>
+            <td> No stock </td>
+          <% end %>
         <% end %>
-
         <td><%= item.likes.count %> <%= (item.likes.count) == 1 ? 'Like' : 'Likes'%></td>
 			</tr>
 		<% end %>
