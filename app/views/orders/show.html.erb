@@ -5,8 +5,6 @@
 			<div class="card text-center shadow mb-5 bg-white rounded">
 				<div class="card-body">
         
-          
-
           <div class="card-text text-left">
             <p><strong>Customer:</strong> <%=@order.user.first_name %> </p>
           </div>
@@ -19,7 +17,7 @@
               <li>
                 <%= line_item.quantity %> x <%= line_item.item.name %> = <%= number_to_currency(line_item.total_price) %>
               </li>
-                <% total += item.total_price %>
+                <% total += line_item.total_price %>
             <% end %>
             </ul>
           </div>

@@ -39,6 +39,7 @@
   <p>Cart is empty </p>
 <% else %>
   <%# <%= button_to "Buy now!", checkout_create_path, remote: true, data: { disable_with: "validating..."}, class: "btn btn-primary btn-lg" %>
+  <%= link_to "Proceed to checkout", new_order_path %><br>
   <br>
   <%= link_to "Empty cart", cart_path(@current_cart),method: :delete, 
   data: {confirm: "Are you sure?"}, class: "btn btn-dark btn-lg" %>

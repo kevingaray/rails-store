@@ -16,6 +16,6 @@ Rails.application.routes.draw do
   get 'line_items/:id' => 'line_items#show', as: 'line_item'
   delete 'line_items/:id' => 'line_items#destroy'
 
-  resources :orders, only: [:index, :show]
+  resources :orders
   
 end
