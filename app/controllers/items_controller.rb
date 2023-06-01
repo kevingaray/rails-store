@@ -32,6 +32,7 @@ class ItemsController < ApplicationController
   def update
     @item = Item.find(params[:id])
     if @item.update(item_params)
+      save_changes_in_log(@item)
       flash[:notice] = "Item updated succesfully"
       redirect_to @item
     else
@@ -52,8 +53,16 @@ class ItemsController < ApplicationController
     params.require(:item).permit(:name, :price, :stock)
   end
 
-
-
+  def save_changes_in_log(item)
+    changes = @item.saved_changes
+    changes.each do |k, v|
+      log_entry = ItemsChangeLog.new(item_id: item.id, user_id: current_user.id)
+      log_entry.column_name = k
+      log_entry.prev_value = v[0].to_s
+      log_entry.new_value = v[1].to_s
+      log_entry.save!
+    end
+  end
   
 end
   

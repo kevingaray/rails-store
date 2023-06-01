@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_05_31_151640) do
+ActiveRecord::Schema.define(version: 2023_06_01_135707) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,6 +29,18 @@ ActiveRecord::Schema.define(version: 2023_05_31_151640) do
     t.string "stripe_price_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "items_change_logs", force: :cascade do |t|
+    t.bigint "item_id"
+    t.bigint "user_id"
+    t.string "column_name"
+    t.string "prev_value"
+    t.string "new_value"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["item_id"], name: "index_items_change_logs_on_item_id"
+    t.index ["user_id"], name: "index_items_change_logs_on_user_id"
   end
 
   create_table "likes", force: :cascade do |t|

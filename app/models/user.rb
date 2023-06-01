@@ -10,6 +10,7 @@ class User < ApplicationRecord
   
   has_many :likes, dependent: :destroy
   has_many :orders
+  has_many :items_change_log
 
   def admin?
     admin == true
