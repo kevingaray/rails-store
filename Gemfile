@@ -32,3 +32,7 @@ gem 'dotenv-rails', require: 'dotenv/rails-now'
 gem 'devise'
 gem 'faker'
 
+
+gem "dockerfile-rails", ">= 1.4", :group => :development
+
+gem "redis", "~> 5.0"
