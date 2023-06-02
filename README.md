@@ -1,24 +1,19 @@
-# README
+# Store
+Store web app created on the trainee program Ruby on Rails from Applaudo Studios
+* ruby: 3.1.2
+* rails: 6.1.7
+* style: Bootstrap 4.4
+* database: PostgreSQL
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+To run this locally, create a .env file with credentials for the postgres database
+```
+DB_USERNAME = postgres
+DB_PASSWORD = admin
+```
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Run ```db:seed``` to create the items and users:
+| user      | email                     | password |
+|-----------|---------------------------|----------|
+| admin     | admin@snackstore.com      | 123456   |
+| support   | support@snackstore.com    | 123456   |
+| customer  | michi@snackstore.com      | 123456   |
