@@ -18,4 +18,8 @@ Rails.application.routes.draw do
 
   resources :orders
   
+  namespace :admin do
+    resources :items_change_logs, only: [:index]
+  end
+  
 end

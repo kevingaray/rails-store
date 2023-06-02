@@ -1,0 +1,28 @@
+<h1>Change in Items</h1>
+
+<table class="table">
+	<thead>
+	<tr>
+    <th>id</th>
+		<th>User</th>
+		<th>Item_id</th>
+		<th>Column change</th>
+		<th>Prev value</th>
+    <th>New Value</th>
+    <th>Date</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @itemschangelogs.each do |itemschangelog|%>
+			<tr>
+        <th><%= itemschangelog.id %></th>
+				<th><%= itemschangelog.user.first_name %></th>
+				<td><%= itemschangelog.item_id %></td>
+        <td><%= itemschangelog.column_name %></td>
+        <td><%= itemschangelog.prev_value %></td>
+        <td><%= itemschangelog.new_value %></td>
+        <td><%= itemschangelog.created_at %></td>
+      </tr>
+		<% end %>
+	</tbody>
+</table>
