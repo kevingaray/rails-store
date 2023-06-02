@@ -17,3 +17,15 @@ Run ```db:seed``` to create the items and users:
 | admin     | admin@snackstore.com      | 123456   |
 | support   | support@snackstore.com    | 123456   |
 | customer  | michi@snackstore.com      | 123456   |
+
+# Functions
+
+| user      | Functions                                                    |
+|-----------|--------------------------------------------------------------|
+| admin     | Create and eliminate items, view "items change logs" page    |
+| support   | Edit items                                                   | 
+| customer  | Like items , add to cart and buy                             |
+
+
+# Deploy
+Visit the fly.io version [Rails Store](https://rails-store.fly.dev/)
