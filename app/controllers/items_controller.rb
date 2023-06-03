@@ -3,7 +3,8 @@ class ItemsController < ApplicationController
   before_action :verify_is_admin, only: %i[new create destroy]
 
   def index
-    @items = Item.search(params[:search])
+    @items = Items::Query::Index.new(filter_params).call
+    # @items = Item.search(params[:search])
   end
 
   def show
@@ -63,6 +64,10 @@ class ItemsController < ApplicationController
       log_entry.save!
     end
   end
-  
+
+  def filter_params
+    params.slice(:search, :sort, :direction)#, :tags)
+  end
+
 end
   

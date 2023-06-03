@@ -3,15 +3,15 @@
 <table class="table">
 	<thead>
 		<tr>
-			<th scope="col">id</th>
-			<th scope="col">Item</th>
-			<th scope="col">Price</th>
-			<th scope="col">Stock</th>
+			<th><%= sortable "id" %></th>
+      <th><%= sortable "name" %></th>
+      <th><%= sortable "price" %></th>
+			<th><%= sortable "stock" %></th>
 			<th>Actions</th>
       <% unless current_user && current_user.support? %>
         <th>Add to cart</th>  
       <% end %>
-      <th scope="col">Likes</th>
+      <th><%= sortable "likes" %></th>
 		</tr>
 	</thead>
 	<tbody>
