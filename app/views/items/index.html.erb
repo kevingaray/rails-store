@@ -12,6 +12,7 @@
         <th>Add to cart</th>  
       <% end %>
       <th><%= sortable "likes" %></th>
+			<th>Tags</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -30,6 +31,11 @@
           <% end %>
         <% end %>
         <td><%= item.likes.count %> <%= (item.likes.count) == 1 ? 'Like' : 'Likes'%></td>
+				<td>
+          <% item.tags.each do |tag| %>
+            <%= link_to tag.name, request.query_parameters.merge({ tags: tag.name }) , class: "btn btn-primary" %>
+          <% end %>
+        </td>
 			</tr>
 		<% end %>
 	</tbody>

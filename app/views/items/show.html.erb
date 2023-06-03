@@ -13,6 +13,14 @@
           <div class="card-text text-left">
             <p><strong>Stock: <%= @item.stock%></strong></p>
           </div>
+
+					<div>
+						<p><strong>Tags:</strong></p>
+						<%  @item.tags.each do |tag| %>
+							<%= link_to tag.name, root_path(tags: tag.name) , class: "btn btn-info" %>
+						<% end %>
+          </div>
+					<br>
 					<div>
             <% if current_user && current_user.support? %>
               <%= link_to "Edit", edit_item_path(@item), class: "btn btn-primary" %>
@@ -21,6 +29,7 @@
               <% end %>
             <% end %>
 					</div>
+					<br>
 					<div>
 						<% if current_user %>
 							<% liked = @item.likes.find_by(user_id: current_user.id) %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_06_01_135707) do
+ActiveRecord::Schema.define(version: 2023_06_03_145257) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -70,6 +70,21 @@ ActiveRecord::Schema.define(version: 2023_06_01_135707) do
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
+  create_table "taggables", force: :cascade do |t|
+    t.bigint "item_id", null: false
+    t.bigint "tag_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["item_id"], name: "index_taggables_on_item_id"
+    t.index ["tag_id"], name: "index_taggables_on_tag_id"
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -93,4 +108,6 @@ ActiveRecord::Schema.define(version: 2023_06_01_135707) do
   add_foreign_key "likes", "users"
   add_foreign_key "line_items", "items"
   add_foreign_key "orders", "users"
+  add_foreign_key "taggables", "items"
+  add_foreign_key "taggables", "tags"
 end

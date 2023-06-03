@@ -24,10 +24,10 @@
           <%= f.text_field :stock, class: "col-10 form-control shadow rounded", placeholder: "Stock of item" %>
         </div>
 
-        <%# <div class="form-group row"> %>
-          <%# <%= f.label :tag, class: "col-2 col-form-label" %>
-          <%# <%= f.text_field :tags, value: @item.tags.map(&:name).join(","), class: "col-10 form-control shadow rounded", placeholder: "Tags of item" %>
-        <%# </div> %>
+        <div class="form-group row">
+          <%= f.label :tag, class: "col-2 col-form-label" %>
+          <%= f.text_field :tags, value: @item.tags.map(&:name).join(","), class: "col-10 form-control shadow rounded", placeholder: "Tags of item" %>
+        </div>
 
         <%# <div class="form-group row"> %>
           <%# <%= f.label :image %>

@@ -17,6 +17,7 @@ class ItemsController < ApplicationController
 
   def create
     @item = Item.new(item_params)
+    create_or_delete_items_tags(@item, tags_params)
     if @item.save
       flash[:notice] = "Item created succesfully"
       redirect_to @item
@@ -32,6 +33,7 @@ class ItemsController < ApplicationController
 
   def update
     @item = Item.find(params[:id])
+    create_or_delete_items_tags(@item, tags_params)
     if @item.update(item_params)
       save_changes_in_log(@item)
       flash[:notice] = "Item updated succesfully"
@@ -66,8 +68,21 @@ class ItemsController < ApplicationController
   end
 
   def filter_params
-    params.slice(:search, :sort, :direction)#, :tags)
+    params.slice(:search, :sort, :direction, :tags)
   end
+
+  def tags_params
+    params[:item][:tags]
+  end
+
+  def create_or_delete_items_tags(item, tags)
+    item.taggables.destroy_all
+    tags = tags.split(',')
+    tags.each do |tag|
+      item.tags << Tag.find_or_create_by(name: tag.strip)
+    end
+  end
+
 
 end
   

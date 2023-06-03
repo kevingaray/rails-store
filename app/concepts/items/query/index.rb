@@ -7,14 +7,14 @@ module Items
         @search = params[:search]
         @column = params[:sort]
         @direction = params[:direction]
-        # @tags = params[:tags]
+        @tags = params[:tags]
       end
 
       def call
         @items = Item.where(deleted_at: nil)
         filter_by_search if @search
         filter_by_column_direction if @column || @direction
-        # filter_by_tag if @tags
+        filter_by_tag if @tags
         @items
       end
 
@@ -35,9 +35,9 @@ module Items
                  end
       end
 
-      # def filter_by_tag
-      #   @items = @items.joins(:tags).where(tags: { name: @tags })
-      # end
+      def filter_by_tag
+        @items = @items.joins(:tags).where(tags: { name: @tags })
+      end
 
       def sort_column
         %w[id name price stock likes].include?(@column) ? @column : 'name'
