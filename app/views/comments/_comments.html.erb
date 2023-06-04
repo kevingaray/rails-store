@@ -3,7 +3,14 @@
   <div class="card">
     <div class="card-body">
       <h5 class="mt-0">user: <%= comment.user.first_name %></h5>
-      <p>rate: <%= comment.rate %></p>
+      <p>rate: 
+        <% comment.rate.times do  %>
+          <span>&#9733;</span>
+        <% end %>
+        <% (5-comment.rate).times do  %>
+          <span>&#9734;</span>
+        <% end %>
+      </p>
       <%= comment.body %>
     </div>
   </div>

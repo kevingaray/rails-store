@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   devise_for :users
   resources :items do
     resources :likes, only: [:create, :destroy]
+    resources :comments, module: :items
   end
 
   # carts routes
@@ -16,7 +17,10 @@ Rails.application.routes.draw do
   get 'line_items/:id' => 'line_items#show', as: 'line_item'
   delete 'line_items/:id' => 'line_items#destroy'
 
-  resources :orders
+  resources :orders, :only => [:show, :index, :new] do
+    resources :comments, module: :orders
+  end
+
   
   namespace :admin do
     resources :items_change_logs, only: [:index]

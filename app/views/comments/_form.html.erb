@@ -1,0 +1,19 @@
+<br>
+<h3>Add a comment</h3>
+<%= form_for [obj, Comment.new] do |f| %>
+
+  <div class="form-check form-check-inline">
+  <%= f.label :rate %>
+    <% for i in 1..5 do %>
+      <p>&emsp;</p>
+      <%= f.radio_button :rate, i%>
+      <%= i %>      
+    <% end %>
+  </div> 
+
+  <div class="form-group">
+    <%= f.text_area :body, class: "form-control", placeholder: "Add a comment" %>
+  </div> 
+  
+  <%= f.submit class: "btn btn-primary" %>
+<% end %>
