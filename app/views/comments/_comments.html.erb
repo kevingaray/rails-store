@@ -1,0 +1,10 @@
+<h3>Comments :</h3>
+<% obj.comments.each do |comment| %>
+  <div class="card">
+    <div class="card-body">
+      <h5 class="mt-0">user: <%= comment.user.first_name %></h5>
+      <p>rate: <%= comment.rate %></p>
+      <%= comment.body %>
+    </div>
+  </div>
+<% end %>

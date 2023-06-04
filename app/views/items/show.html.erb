@@ -41,6 +41,10 @@
 						<% end %>
 						<%= @item.likes.count %> <%= (@item.likes.count) == 1 ? 'Like' : 'Likes'%>
 					</div>
+					<br>
+					<div>
+						<%= render "comments/comments", obj: @item %>
+					</div>
 				</div>
 			</div>
 		</div>

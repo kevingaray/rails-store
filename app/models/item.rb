@@ -5,6 +5,7 @@ class Item < ApplicationRecord
   has_many :items_change_logs
   has_many :taggables, dependent: :destroy
   has_many :tags, through: :taggables
+  has_many :comments, as: :commentable
 
   def self.search(search)
     if search
