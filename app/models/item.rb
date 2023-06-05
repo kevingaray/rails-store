@@ -1,5 +1,7 @@
 class Item < ApplicationRecord
   validates :name, presence: true,  length: {minimum: 6, maximum: 100}
+  validates :price, numericality: { greater_than_or_equal_to: 0 }
+  validates :stock, numericality: { greater_than_or_equal_to: 0 }
   has_many :likes, dependent: :destroy
   has_many :line_items, dependent: :destroy
   has_many :items_change_logs

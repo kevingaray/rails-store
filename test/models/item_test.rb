@@ -10,4 +10,23 @@ class ItemTest < ActiveSupport::TestCase
     assert_not item.valid?
   end
 
+  test 'item cant have a negative price' do
+    item = Item.create(
+      name: Faker::Food.unique.fruits,
+      price: -rand(10.00..50.00),
+      stock: rand(20..50)
+    )
+    assert_not item.valid?
+  end
+
+  test 'item cant have a negative stock' do
+    item = Item.create(
+      name: Faker::Food.unique.fruits,
+      price: rand(10.00..50.00),
+      stock: -rand(20..50)
+    )
+    assert_not item.valid?
+  end
+
+
 end
