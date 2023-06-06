@@ -1,32 +1,23 @@
 require "test_helper"
-require 'faker'
 
 class ItemTest < ActiveSupport::TestCase
+
   test "item should not be valid without a name" do
-    item = Item.create(
-      price: rand(10.00..50.00),
-      stock: rand(20..50)
-    )
+    item = build(:item) 
+    item.name = ""
     assert_not item.valid?
   end
 
   test 'item cant have a negative price' do
-    item = Item.create(
-      name: Faker::Food.unique.fruits,
-      price: -rand(10.00..50.00),
-      stock: rand(20..50)
-    )
+    item = build(:item) 
+    item.price = - item.price
     assert_not item.valid?
   end
 
   test 'item cant have a negative stock' do
-    item = Item.create(
-      name: Faker::Food.unique.fruits,
-      price: rand(10.00..50.00),
-      stock: -rand(20..50)
-    )
+    item = build(:item) 
+    item.stock = - item.stock
     assert_not item.valid?
   end
-
 
 end
