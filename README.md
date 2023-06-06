@@ -29,3 +29,12 @@ Run ```db:seed``` to create the items and users:
 
 # Deploy
 Visit the fly.io version [Rails Store](https://rails-store.fly.dev/)
+
+# Documentation
+Running with yard
+```
+yard server --reload
+```
+
+# Test
+Minitest(default) with FactoryBot
