@@ -4,7 +4,6 @@ class ItemsController < ApplicationController
 
   def index
     @items = Items::Query::Index.new(filter_params).call
-    # @items = Item.search(params[:search])
   end
 
   def show
