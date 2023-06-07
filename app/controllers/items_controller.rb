@@ -15,14 +15,13 @@ class ItemsController < ApplicationController
   end
 
   def create
-    @item = Item.new(item_params)
-    create_or_delete_items_tags(@item, tags_params)
-    if @item.save
-      flash[:notice] = "Item created succesfully"
+    begin
+      @item = Items::Operation::Create.call(item_params,tags_params)
+      flash[:notice] = "Item created successfully"
       redirect_to @item
-    else
-      flash[:alert] = 'There was something wrong the item info'
-      render 'new'
+    rescue ActiveRecord::RecordInvalid => e
+      flash[:alert] = e.record.errors.full_messages#.join(', ')
+      redirect_to new_item_path
     end
   end
 
@@ -73,15 +72,6 @@ class ItemsController < ApplicationController
   def tags_params
     params[:item][:tags]
   end
-
-  def create_or_delete_items_tags(item, tags)
-    item.taggables.destroy_all
-    tags = tags.split(',')
-    tags.each do |tag|
-      item.tags << Tag.find_or_create_by(name: tag.strip)
-    end
-  end
-
 
 end
   
