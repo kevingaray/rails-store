@@ -3,7 +3,10 @@ Rails.application.routes.draw do
   devise_for :users
   resources :items do
     resources :likes, only: [:create, :destroy]
-    resources :comments, module: :items
+    resources :comments, module: :items do
+      post 'approved'
+      delete 'delete'
+    end
   end
 
   # carts routes

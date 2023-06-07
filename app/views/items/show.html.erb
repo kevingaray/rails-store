@@ -43,7 +43,10 @@
 					</div>
 					<br>
 					<div>
-						<%= render "comments/comments", obj: @item %>
+						<%= render "comments/comments_approved", obj: @item %>
+						<% if current_user && current_user.support? %>
+							<%= render "comments/comments_to_approve", obj: @item %>
+						<% end %>
 						<%= render "comments/form", obj: @item %>
 					</div>
 				</div>

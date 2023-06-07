@@ -1,0 +1,11 @@
+<h3>Comments to approve:</h3>
+<% obj.comments.where(approved: false).each do |comment| %>
+  <div class="card">
+    <div class="card-body">
+      <%= render "comments/comment",  comment: comment %>
+      <br>
+      <%= link_to "Approve", item_comment_approved_path(obj,comment) , method: :post, class: "btn btn-success" %>
+      <%= link_to "Delete", item_comment_delete_path(obj, comment), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger" %>
+    </div>
+  </div>
+<% end %>
