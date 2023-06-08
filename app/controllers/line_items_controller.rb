@@ -7,29 +7,27 @@ class LineItemsController < ApplicationController
 
   def destroy
     LineItem.find(params[:id]).destroy
-    redirect_to cart_path(@current_cart)
+    redirect_to cart_path(current_cart)
   end 
   
   def add_quantity
-    @line_item = LineItem.find(params[:id])
-    if @line_item.item.stock > @line_item.quantity
-      @line_item.quantity += 1
-      @line_item.save
-    else
-      flash[:alert] = "Not enough stock"
+    begin
+      LineItems::Operation::QuantityUp.new(params[:id]).call
+    rescue => e
+      flash[:alert] = e.message
+    ensure
+      redirect_to cart_path(current_cart)
     end
-    redirect_to cart_path(@current_cart)
   end
   
   def reduce_quantity
-    @line_item = LineItem.find(params[:id])
-    if @line_item.quantity > 1
-      @line_item.quantity -= 1
-      @line_item.save
-    else
-      flash[:alert] = "Need at least one item"
+    begin
+      LineItems::Operation::QuantityDown.new(params[:id]).call
+    rescue => e
+      flash[:alert] = e.message
+    ensure
+      redirect_to cart_path(current_cart)
     end
-    redirect_to cart_path(@current_cart)
   end
   
 end
