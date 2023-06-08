@@ -3,21 +3,23 @@ class LikesController < ApplicationController
   before_action :find_like
 
   def create
-    unless @liked
-      @item.likes.create(user_id: current_user.id)
-    else
-      flash[:alert] = "You can't like more than once"
+    begin
+      Likes::Operation::Create.new(@liked,@item,current_user).call
+    rescue => e
+      flash[:alert] = e.message
+    ensure
+      redirect_to item_path(@item)
     end
-    redirect_to item_path(@item)
   end
 
   def destroy
-    if @liked
-      @liked.destroy
-    else
-      flash[:alert] = "Cannot unlike"
+    begin
+      Likes::Operation::Destroy.new(@liked).call
+    rescue => e
+      flash[:alert] = e.message
+    ensure
+      redirect_to item_path(@item)
     end
-    redirect_to item_path(@item)
   end
 
   private
