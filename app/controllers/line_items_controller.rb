@@ -1,19 +1,7 @@
 class LineItemsController < ApplicationController
 
   def create
-    chosen_item = Item.find(params[:item_id])
-    current_cart = @current_cart
-  
-    if current_cart.items.include?(chosen_item)
-      @line_item = current_cart.line_items.find_by(:item_id => chosen_item)
-      @line_item.quantity += 1
-    else
-      @line_item = LineItem.new
-      @line_item.cart = current_cart
-      @line_item.item = chosen_item
-    end
-  
-    @line_item.save
+    LineItems::Operation::Create.new(params[:item_id], current_cart).call
     redirect_to cart_path(current_cart)
   end
 
