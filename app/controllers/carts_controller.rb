@@ -4,8 +4,7 @@ class CartsController < ApplicationController
   end
 
   def destroy
-    current_cart.destroy
-    session[:cart_id] = nil
+    Carts::Operation::Destroy.new(session).call
     redirect_to root_path
   end
 

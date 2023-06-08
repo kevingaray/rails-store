@@ -19,16 +19,9 @@ class OrdersController < ApplicationController
   end
 
   def create
-    Orders::Operation::Create.new(current_user,@current_cart).call
-    destroy_cart
+    Orders::Operation::Create.new(current_user,current_cart).call
+    Carts::Operation::Destroy.new(session).call
     redirect_to root_path
-  end
-
-  private
-  
-  def destroy_cart
-    Cart.destroy(session[:cart_id])
-    session[:cart_id] = nil
   end
 
 end
