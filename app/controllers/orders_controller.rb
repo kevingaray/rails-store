@@ -2,7 +2,7 @@ class OrdersController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @orders = current_user.support ? Order.all.order(id: :desc) : current_user.orders.order(id: :desc)
+    @orders = Orders::Query::Index.new(current_user).call
   end
 
   def show

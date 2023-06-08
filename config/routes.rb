@@ -24,7 +24,6 @@ Rails.application.routes.draw do
     resources :comments, module: :orders
   end
 
-  
   namespace :admin do
     resources :items_change_logs, only: [:index]
   end
