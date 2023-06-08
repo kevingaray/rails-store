@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   get 'line_items/:id' => 'line_items#show', as: 'line_item'
   delete 'line_items/:id' => 'line_items#destroy'
 
-  resources :orders, :only => [:show, :index, :new] do
+  resources :orders, :only => [:show, :index, :new, :create] do
     resources :comments, module: :orders
   end
 
