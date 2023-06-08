@@ -6,9 +6,10 @@ class OrdersController < ApplicationController
   end
 
   def show
-    @order = Order.find(params[:id])
-    unless current_user.support || current_user.id == @order.user_id
-      flash[:alert] = "User not allowed"
+    begin
+      @order = Orders::Query::Show.new(params[:id], current_user).call  
+    rescue => e
+      flash[:alert] = e.message
       redirect_to orders_path
     end
   end
