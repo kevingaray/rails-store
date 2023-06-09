@@ -15,13 +15,12 @@
             <ul>
             <% @order.line_items.each do |line_item| %>
               <li>
-                <%= line_item.quantity %> x <%= line_item.item.name %> = <%= number_to_currency(line_item.total_price) %>
+                <%= line_item.quantity %> x <%= line_item.item.name %> = <%= number_to_currency(decorate(line_item).total_price) %>
               </li>
-                <% total += line_item.total_price %>
+                <% total += decorate(line_item).total_price %>
             <% end %>
             </ul>
           </div>
-
 
           <div class="card-text text-left">
           <p><strong>Total:</strong> <%= number_to_currency(total) %></p>

@@ -17,7 +17,7 @@
         <td><%= line_item.item.name %>  (stock :  <%= line_item.item.stock %>)</td>
         <td><%= number_to_currency(line_item.item.price) %></td>
         <td><%= line_item.quantity %></td>
-        <td><%= number_to_currency(line_item.total_price) %></td>
+        <td><%= number_to_currency(decorate(line_item).total_price) %></td>
         <td>
             <%= link_to "Add one", line_item_add_path(:id => line_item), 
               method: :post, class: "btn btn-success" %>
@@ -31,7 +31,7 @@
 	</tbody>
 </table>
 
-<h2>Sub total : <%= @cart.sub_total %></h2>
+<h2>Sub total : <%= decorate(@cart).sub_total %></h2>
 
 <% if !current_user %>
   <p>You need to log in</p>
