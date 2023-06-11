@@ -38,3 +38,6 @@ gem "redis", "~> 5.0"
 # to save images
 gem 'aws-sdk-s3'
 gem 'image_processing', '~> 1.2'
+
+# pagination 
+gem 'pagy', '~> 5.10'

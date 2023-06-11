@@ -3,7 +3,7 @@ class ItemsController < ApplicationController
   before_action :verify_is_admin, only: %i[new create destroy]
 
   def index
-    @items = Items::Query::Index.new(filter_params).call
+    @pagy, @items = pagy(Items::Query::Index.new(filter_params).call)
   end
 
   def show

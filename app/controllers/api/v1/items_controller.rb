@@ -4,7 +4,7 @@ module Api
 
       # GET /items
       def index
-        @items = Items::Query::Index.new(filter_params).call
+        @pagy, @items = pagy(Items::Query::Index.new(filter_params).call)
         render json: { data: @items }, status: :ok 
       end
 
