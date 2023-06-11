@@ -11,9 +11,14 @@ module Api
 
       # GET /items/:id
       def show
-        @item = Item.find(params[:id])
-        render json: { data: @item }, status: :ok 
+        begin
+          @item = Item.find(params[:id])
+          render json: { data: @item }, status: :ok 
+        rescue => e
+          render json: { errors: e }, status: :not_found
+        end
       end
+       
 
       #POST /items
       def create
@@ -21,9 +26,20 @@ module Api
           @item = Items::Operation::Create.call(item_params)
           render json: { data: @item }, status: :created
         rescue ActiveRecord::RecordInvalid => e
-          render json: { data: e.record.errors.full_messages}
+          render json: { errors: e.record.errors.full_messages}, status: :bad_request
         end
       end
+
+      #DELETE /items/:id
+      def destroy
+        begin 
+          Items::Operation::Destroy.call(params[:id])
+          render json: { Success: 'Item deleted'}, status: :accepted
+        rescue => e
+          render json: { errors: e }, status: :not_found
+        end
+      end
+      
       
       private
 
