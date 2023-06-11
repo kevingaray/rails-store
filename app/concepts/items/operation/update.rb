@@ -2,7 +2,7 @@ module Items
   module Operation
     class Update < ApplicationService
 
-      def initialize(item,item_params,tags_params, user)
+      def initialize(item,item_params,tags_params = nil, user)
         @item = item
         @item_params = item_params
         @tags_params = tags_params
@@ -11,8 +11,9 @@ module Items
 
       def call
         if @item.update(@item_params)
-          create_or_delete_items_tags(@item, @tags_params)
+          create_or_delete_items_tags(@item, @tags_params) if @tags_params
           save_changes_in_log(@item,@user)
+          @item
         else
           raise ActiveRecord::RecordInvalid.new(@item)
         end    

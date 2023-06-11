@@ -19,8 +19,7 @@ module Api
         end
       end
        
-
-      #POST /items
+      # POST /items
       def create
         begin
           @item = Items::Operation::Create.call(item_params)
@@ -30,7 +29,7 @@ module Api
         end
       end
 
-      #DELETE /items/:id
+      # DELETE /items/:id
       def destroy
         begin 
           Items::Operation::Destroy.call(params[:id])
@@ -40,6 +39,17 @@ module Api
         end
       end
       
+      # PUT /items/:id
+      def update
+        begin
+          item = Item.find(params[:id])
+          Items::Operation::Update.call(item,item_params,nil, @current_user)
+          head :no_content
+        rescue => e 
+          render json: { errors: e }, status: :not_acceptable
+        end
+      
+      end
       
       private
 
