@@ -13,12 +13,4 @@ class Item < ApplicationRecord
     attachable.variant :thumb, resize_to_limit: [220, 220]
   end
 
-  # def self.search(search)
-  #   if search
-  #     @items = Item.where("LOWER(name) LIKE LOWER(?)", "%"+search+"%")
-  #   else
-  #     @items = Item.all
-  #   end
-  # end
-
 end
