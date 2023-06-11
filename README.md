@@ -4,6 +4,7 @@ Store web app created on the trainee program Ruby on Rails from Applaudo Studios
 * rails: 6.1.7
 * style: Bootstrap 4.4
 * database: PostgreSQL
+* storage images: amazon s3
 
 To run this locally, create a .env file with credentials for the postgres database
 ```

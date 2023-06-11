@@ -36,5 +36,5 @@ gem 'faker'
 gem "redis", "~> 5.0"
 
 # to save images
-# gem 'aws-sdk-s3'
+gem 'aws-sdk-s3'
 gem 'image_processing', '~> 1.2'
