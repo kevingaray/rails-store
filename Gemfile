@@ -41,3 +41,5 @@ gem 'image_processing', '~> 1.2'
 
 # pagination 
 gem 'pagy', '~> 5.10'
+# jwt
+gem 'jwt'

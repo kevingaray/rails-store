@@ -32,6 +32,8 @@ Rails.application.routes.draw do
     namespace :v1 do
 
       resources :items, :only => [:show, :index]
+      post "auth/login", to: "authentication#login"
+      resources :users
       
     end
   end 

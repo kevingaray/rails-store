@@ -1,7 +1,8 @@
 module Api
   module V1
     class ItemsController < ApiController
-
+      skip_before_action :authenticate_request
+      
       # GET /items
       def index
         @pagy, @items = pagy(Items::Query::Index.new(filter_params).call)
