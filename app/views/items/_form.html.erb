@@ -4,10 +4,10 @@
 
       <%= form_with(model: @item, local: true) do |f| %>
 
-        <%# <% if @item.image.attached? %>
-          <%# <%= image_tag @item.image, style: "width: 220px" ,class: "rounded mx-auto d-block" %>
-          <%# </br> %>
-        <%# <% end %>
+        <% if @item.image.attached? %>
+          <%= image_tag @item.image, style: "width: 220px" ,class: "rounded mx-auto d-block" %>
+          <br>
+        <% end %>
 
         <div class="form-group row">
           <%= f.label :name, class: "col-2 col-form-label" %>
@@ -29,10 +29,10 @@
           <%= f.text_field :tags, value: @item.tags.map(&:name).join(","), class: "col-10 form-control shadow rounded", placeholder: "Tags of item" %>
         </div>
 
-        <%# <div class="form-group row"> %>
-          <%# <%= f.label :image %>
-          <%# <%= f.file_field :image, class: "form-control" %> 
-        <%# </div> %>
+        <div class="form-group row">
+          <%= f.label :image %>
+          <%= f.file_field :image, class: "form-control" %> 
+        </div>
 
         <div class="form-group row justify-content-center">
           <%= f.submit class: "btn btn-outline-dark" %>

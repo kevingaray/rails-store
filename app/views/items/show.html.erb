@@ -4,6 +4,10 @@
 		<div class="col-8 mt-4">
 			<div class="card text-center shadow mb-5 bg-white rounded">
 				<div class="card-body">
+					<% if @item.image.attached? %>
+            <%= image_tag @item.image, style: "width: 220px" ,class: "rounded mx-auto d-block" %>
+            <br>
+          <% end %>
           <div class="card-text text-left">
             <p><strong>ID: <%= @item.id%> </strong></p>
           </div>

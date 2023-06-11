@@ -9,12 +9,16 @@ class Item < ApplicationRecord
   has_many :tags, through: :taggables
   has_many :comments, as: :commentable
 
-  def self.search(search)
-    if search
-      @items = Item.where("LOWER(name) LIKE LOWER(?)", "%"+search+"%")
-    else
-      @items = Item.all
-    end
+  has_one_attached :image do |attachable|
+    attachable.variant :thumb, resize_to_limit: [220, 220]
   end
+
+  # def self.search(search)
+  #   if search
+  #     @items = Item.where("LOWER(name) LIKE LOWER(?)", "%"+search+"%")
+  #   else
+  #     @items = Item.all
+  #   end
+  # end
 
 end

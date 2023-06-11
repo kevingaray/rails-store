@@ -20,6 +20,7 @@ end
 group :development do
   gem 'web-console', '>= 4.1.0'
   gem 'rack-mini-profiler', '~> 2.0'
+  gem "dockerfile-rails", ">= 1.4"
 end
 
 group :test do
@@ -32,8 +33,8 @@ gem 'tzinfo-data'
 gem 'dotenv-rails', require: 'dotenv/rails-now'
 gem 'devise'
 gem 'faker'
-
-
-gem "dockerfile-rails", ">= 1.4", :group => :development
-
 gem "redis", "~> 5.0"
+
+# to save images
+# gem 'aws-sdk-s3'
+gem 'image_processing', '~> 1.2'
