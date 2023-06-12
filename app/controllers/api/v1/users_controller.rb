@@ -1,7 +1,7 @@
 module Api
   module V1
     class UsersController < ApiController
-      # before_action :verify_is_admin, only: %i[create destroy]
+      before_action :verify_is_admin, only: %i[create destroy]
 
       #GET /users
       def index

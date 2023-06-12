@@ -7,6 +7,14 @@ module Api
 
       private
 
+      def verify_is_admin
+        render json: { error: 'Not admin' }, status: :unauthorized unless current_user&.admin
+      end
+
+      def verify_is_support
+        render json: { error: 'Not support' }, status: :unauthorized unless current_user&.support
+      end
+
       def authenticate_request
         header = request.headers['Authorization']
         header = header.split(' ').last if header

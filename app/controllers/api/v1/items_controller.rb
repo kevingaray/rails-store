@@ -2,6 +2,8 @@ module Api
   module V1
     class ItemsController < ApiController
       skip_before_action :authenticate_request, only: %i[index show]
+      before_action :verify_is_support, only: %i[update destroy]
+      before_action :verify_is_admin, only: %i[create]
       
       # GET /items
       def index
