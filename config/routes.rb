@@ -31,7 +31,11 @@ Rails.application.routes.draw do
   namespace :api, defaults: { format: :json }  do
     namespace :v1 do
 
-      resources :items
+      resources :items do
+        post 'likes' => 'likes#create'
+        delete 'likes' => 'likes#destroy'
+      end
+      
       post "auth/login", to: "authentication#login"
       resources :users
       
