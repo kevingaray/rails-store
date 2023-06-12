@@ -5,6 +5,7 @@ module Api
       include JsonWebToken
       before_action :authenticate_request
 
+
       private
 
       def verify_is_admin
@@ -24,6 +25,10 @@ module Api
         else
             @current_user = User.find(decoded[:user_id])
         end
+      end
+
+      def current_cart
+        @current_cart ||= Carts::Operation::CurrentCart.new(session).call
       end
 
     end

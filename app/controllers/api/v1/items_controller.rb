@@ -15,7 +15,7 @@ module Api
       def show
         begin
           @item = Item.find(params[:id])
-          render json: { data: @item }, status: :ok 
+          render json: { item: @item , likes: @item.likes.count, img_url: @item.image.service_url }, status: :ok 
         rescue => e
           render json: { errors: e }, status: :not_found
         end
