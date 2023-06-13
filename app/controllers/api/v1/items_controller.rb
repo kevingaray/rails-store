@@ -50,7 +50,6 @@ module Api
         rescue => e 
           render json: { errors: e }, status: :not_acceptable
         end
-      
       end
       
       private
