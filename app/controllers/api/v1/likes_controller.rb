@@ -7,7 +7,7 @@ module Api
         begin
           find_like
           Likes::Operation::Create.new(@liked,@item,@current_user).call
-          render json: { item: @item, likes: @item.likes.count }, status: :ok
+          render json: { data: Items::Representer::ItemRepresenter.new(@item)}, status: :ok
         rescue => e
           render json: { errors: e }, status: :not_found
         end
@@ -18,7 +18,7 @@ module Api
         begin
           find_like
           Likes::Operation::Destroy.new(@liked).call
-          render json: { item: @item, likes: @item.likes.count }, status: :ok
+          render json: { data: Items::Representer::ItemRepresenter.new(@item) }, status: :ok
         rescue => e
           render json: { errors: e }, status: :not_found
         end
