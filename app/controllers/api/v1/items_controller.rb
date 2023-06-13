@@ -8,14 +8,14 @@ module Api
       # GET /items
       def index
         @pagy, @items = pagy(Items::Query::Index.new(filter_params).call)
-        render json: { data: @items }, status: :ok 
+        render json: { data: Items::Representer::ItemRepresenter.for_collection.new(@items) }, status: :ok 
       end
 
       # GET /items/:id
       def show
         begin
           @item = Item.find(params[:id])
-          render json: { item: @item , likes: @item.likes.count, img_url: @item.image.service_url }, status: :ok 
+          render json: { date: Items::Representer::ItemRepresenter.new(@item) }, status: :ok 
         rescue => e
           render json: { errors: e }, status: :not_found
         end

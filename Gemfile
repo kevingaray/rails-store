@@ -43,3 +43,6 @@ gem 'image_processing', '~> 1.2'
 gem 'pagy', '~> 5.10'
 # jwt
 gem 'jwt'
+# representer
+gem 'multi_json', '~> 1.15'
+gem 'representable', '~> 3.0', '>= 3.0.4'
