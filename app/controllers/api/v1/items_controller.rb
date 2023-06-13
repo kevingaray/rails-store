@@ -25,7 +25,7 @@ module Api
       def create
         begin
           @item = Items::Operation::Create.call(item_params)
-          render json: { data: @item }, status: :created
+          render json: { data: Items::Representer::ItemRepresenter.new(@item) }, status: :created
         rescue ActiveRecord::RecordInvalid => e
           render json: { errors: e.record.errors.full_messages}, status: :bad_request
         end
