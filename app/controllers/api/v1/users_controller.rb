@@ -6,20 +6,24 @@ module Api
       #GET /users
       def index
         @users = User.all
-        render json: { data: @users }, status: :ok
+        render json: { data: Users::Representer::UserRepresenter.for_collection.new(@users) }, status: :ok
       end
 
       #GET /users/:id
       def show
-        @user = User.find(params[:id])
-        render json: @user, status: :ok
+        begin
+          @user = User.find(params[:id])
+          render json: { data: Users::Representer::UserRepresenter.new(@user) }, status: :ok
+        rescue => e
+          render json: { errors: e }, status: :not_found
+        end
       end
 
       #POST /users
       def create
         @user = User.new(user_params)
         if @user.save
-          render json: { data: @user }, status: :created
+          render json: { data: Users::Representer::UserRepresenter.new(@user) }, status: :created
         else
           render json: { data: @user.errors }, status: :unprocessable_entity
         end
