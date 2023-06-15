@@ -15,6 +15,7 @@ module Orders
           li.cart_id = nil
         end
         order.save
+        order
       end
 
       def reduce_stock(line_item)

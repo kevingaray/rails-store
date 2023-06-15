@@ -39,7 +39,7 @@ Rails.application.routes.draw do
       post "auth/login", to: "authentication#login"
       resources :users
 
-      resources :orders, only: [:index, :show]
+      resources :orders, only: [:index, :show, :create]
 
       get 'carts' => 'carts#show'
       delete 'carts' => 'carts#destroy' 

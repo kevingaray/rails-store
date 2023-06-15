@@ -18,6 +18,12 @@ module Api
       end
     end
 
+    # POST /orders
+    def create
+      @order = Orders::Operation::Create.new(current_user,current_cart).call
+      render json: { data: Orders::Representer::OrderRepresenter.new(@order) }  , status: :created
+    end
+    
     end
   end
 end
