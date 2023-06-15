@@ -25,6 +25,16 @@ FactoryBot.define do
     password { 'securepassword' }
   end
 
+  factory :support_user, class: User do
+    first_name { Faker::Name.first_name }
+    last_name  { Faker::Name.last_name }
+    email { Faker::Internet.email }
+    admin { false }
+    support { true }
+    password { 'securepassword' }
+  end
+
+
   factory :comment do
     association :commentable, factory: :item
     user

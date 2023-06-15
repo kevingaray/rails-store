@@ -2,8 +2,8 @@ module Api
   module V1
     class ItemsController < ApiController
       skip_before_action :authenticate_request, only: %i[index show]
-      before_action :verify_is_support, only: %i[update destroy]
-      before_action :verify_is_admin, only: %i[create]
+      before_action :verify_is_support, only: %i[create]
+      before_action :verify_is_admin, only: %i[update destroy]
       
       # GET /items
       def index
@@ -15,7 +15,7 @@ module Api
       def show
         begin
           @item = Item.find(params[:id])
-          render json: { date: Items::Representer::ItemRepresenter.new(@item) }, status: :ok 
+          render json: { data: Items::Representer::ItemRepresenter.new(@item) }, status: :ok 
         rescue => e
           render json: { errors: e }, status: :not_found
         end
