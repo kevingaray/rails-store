@@ -40,6 +40,12 @@ Rails.application.routes.draw do
       resources :users
 
       resources :orders, only: [:index, :show]
+
+      get 'carts' => 'carts#show'
+      delete 'carts' => 'carts#destroy' 
+      
+      post 'line_items' => 'line_items#create'
+      delete 'line_items' => 'line_items#destroy'
       
     end
   end 
