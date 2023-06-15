@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class LoginItemsControllerTest < ActionDispatch::IntegrationTest
+class LoginControllerTest < ActionDispatch::IntegrationTest
 
   test 'login in as customer in api' do
     user = FactoryBot.create(:user)

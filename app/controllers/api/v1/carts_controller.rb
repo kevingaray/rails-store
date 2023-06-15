@@ -8,9 +8,10 @@ module Api
 
       # DELETE carts/
       def destroy
-        Carts::Operation::Destroy.call(current_cart:, session:)
+        Carts::Operation::Destroy.new(session).call
         head :no_content
       end
+
     end
   end
 end
