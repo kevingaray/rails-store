@@ -40,5 +40,11 @@ yard server --reload
 Visit the API documentation
 [Swagger API](https://app.swaggerhub.com/apis/KGARAY_1/SnackStoreKevGer/1.0.0)
 
+To see an insomnia collection look at file 
+```
+Insomnia_2023-06-16.json
+```
+
+
 # Test
 Minitest(default) with FactoryBot
