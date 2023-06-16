@@ -37,5 +37,8 @@ Running with yard
 yard server --reload
 ```
 
+Visit the API documentation
+[Swagger API](https://app.swaggerhub.com/apis/KGARAY_1/SnackStoreKevGer/1.0.0)
+
 # Test
 Minitest(default) with FactoryBot
