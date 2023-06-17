@@ -21,6 +21,8 @@ module Orders
       def reduce_stock(line_item)
         item = Item.find(line_item.item_id)
         item.stock -= line_item.quantity
+        if item.likes.size.positive? && (item.stock <= 3 && item.stock.positive?)
+          StockNotifyMailer.notify_email(item.id).deliver_later
         item.save
       end
 
