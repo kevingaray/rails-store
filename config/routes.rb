@@ -26,6 +26,11 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :items_change_logs, only: [:index]
+    require 'sidekiq/web'
+    authenticate :user, -> (u) { u.admin } do
+      mount Sidekiq::Web => '/sidekiq'
+    end
+  
   end
 
   namespace :api, defaults: { format: :json }  do

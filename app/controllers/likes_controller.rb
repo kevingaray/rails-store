@@ -4,7 +4,7 @@ class LikesController < ApplicationController
 
   def create
     begin
-      Likes::Operation::Create.new(@liked,@item,current_user).call
+      LikeUpdateJob.perform_later(@liked,@item,current_user)
     rescue => e
       flash[:alert] = e.message
     ensure
@@ -14,7 +14,7 @@ class LikesController < ApplicationController
 
   def destroy
     begin
-      Likes::Operation::Destroy.new(@liked).call
+      DislikeUpdateJob.perform_later(@liked)
     rescue => e
       flash[:alert] = e.message
     ensure

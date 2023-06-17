@@ -45,6 +45,10 @@ To see an insomnia collection look at file
 Insomnia_2023-06-16.json
 ```
 
+# Jobs
+Using sidekiq, requires to have [redis](https://redis.io/docs/getting-started/) installed and running to like and dislike items
+Visit the sidekiq url http://127.0.0.1:3000/admin/sidekiq
+
 
 # Test
 Minitest(default) with FactoryBot
