@@ -21,11 +21,11 @@ module Api
 
       #POST /users
       def create
-        @user = User.new(user_params)
-        if @user.save
+        begin
+          @user =  Users::Operation::Create.new(user_params).call
           render json: { data: Users::Representer::UserRepresenter.new(@user) }, status: :created
-        else
-          render json: { data: @user.errors }, status: :unprocessable_entity
+        rescue => e
+          render json: { errors: e }, status: :unprocessable_entity
         end
       end
 
