@@ -23,6 +23,7 @@ module Orders
         item.stock -= line_item.quantity
         if item.likes.size.positive? && (item.stock <= 3 && item.stock.positive?)
           StockNotifyMailer.notify_email(item.id).deliver_later
+        end
         item.save
       end
 
