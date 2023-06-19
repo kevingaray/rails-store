@@ -42,7 +42,11 @@ Rails.application.routes.draw do
       end
       
       post "auth/login", to: "authentication#login"
-      resources :users
+      resources :users, only: [:index, :show, :create, :destroy] do
+        post 'comments' => 'comments#create'
+        delete 'comments/:comment_id' => 'comments#destroy'
+        post '/comments/:comment_id/approve' => 'comments#approve'
+      end
 
       resources :orders, only: [:index, :show, :create]
 
