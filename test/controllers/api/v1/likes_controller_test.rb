@@ -12,7 +12,7 @@ class LikesControllerTest < ActionDispatch::IntegrationTest
   test 'customer can CREATE like item' do
     post "/api/v1/items/#{@item_id}/likes", headers: { 'Authorization' => @token }
     perform_enqueued_jobs
-    get "/api/v1/items/#{@item_id}"
+    get "/api/v1/items/#{@item_id}", headers: { 'Authorization' => @token }
     assert_equal 1, JSON.parse(response.body)['data']['likes']
     assert_response :success
   end
@@ -20,13 +20,13 @@ class LikesControllerTest < ActionDispatch::IntegrationTest
   test 'customer can DESTROY like item' do
     post "/api/v1/items/#{@item_id}/likes", headers: { 'Authorization' => @token }
     perform_enqueued_jobs
-    get "/api/v1/items/#{@item_id}"
+    get "/api/v1/items/#{@item_id}", headers: { 'Authorization' => @token }
     assert_equal 1, JSON.parse(response.body)['data']['likes']
     assert_response :success
 
     delete "/api/v1/items/#{@item_id}/likes", headers: { 'Authorization' => @token }
     perform_enqueued_jobs
-    get "/api/v1/items/#{@item_id}"
+    get "/api/v1/items/#{@item_id}", headers: { 'Authorization' => @token }
     assert_equal 0, JSON.parse(response.body)['data']['likes']
     assert_response :success
   end

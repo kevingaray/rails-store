@@ -20,10 +20,10 @@ class ItemsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test 'should SHOW item json no autentication' do
+  test 'should not SHOW item json with no autentication' do
     item_id = FactoryBot.create(:item).id
     get "/api/v1/items/#{item_id}"
-    assert_response :success
+    assert_response :unauthorized
   end
 
   test 'admin can CREATE item api' do
@@ -40,7 +40,7 @@ class ItemsControllerTest < ActionDispatch::IntegrationTest
     token = token_login_as_admin
     item_id = FactoryBot.create(:item).id
 
-    assert_difference('Item.count', -1) do
+    assert_difference('Item.where(deleted_at: nil).count', -1) do
       delete "/api/v1/items/#{item_id}", headers: { 'Authorization' => token }
     end
     assert_response :success
@@ -56,7 +56,7 @@ class ItemsControllerTest < ActionDispatch::IntegrationTest
 
     assert_response :success
 
-    get "/api/v1/items/#{item.id}"
+    get "/api/v1/items/#{item.id}", headers: { 'Authorization' => token }
     assert_equal 'uva test', JSON.parse(response.body)['data']['name']
     assert_equal "3.4", JSON.parse(response.body)['data']['price']
     assert_equal 6, JSON.parse(response.body)['data']['stock']
