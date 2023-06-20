@@ -7,7 +7,12 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @item = Item.find(params[:id])
+    begin
+      @item = Items::Query::Show.new(params[:id],current_user).call
+    rescue => e
+      flash[:alert] = e.message
+      redirect_to items_path
+    end
   end
 
   def new

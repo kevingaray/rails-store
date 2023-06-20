@@ -1,7 +1,6 @@
 module Items
   module Query
     class Index
-      # include Pagy::Backend
 
       def initialize(params)
         @search = params[:search]

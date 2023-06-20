@@ -8,7 +8,7 @@ module Items
 
       def call
         item = Item.find(@id)
-        item.destroy
+        item.update_attribute(:deleted_at, Time.current)
       end
 
     end
