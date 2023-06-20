@@ -13,7 +13,7 @@ module Api
       def show
         begin
           @user = User.find(params[:id])
-          render json: { data: Users::Representer::UserRepresenter.new(@user) }, status: :ok
+          render :show, status: :ok
         rescue => e
           render json: { errors: e }, status: :not_found
         end
