@@ -5,14 +5,14 @@ module Api
 
       #GET /users
       def index
-        @users = User.all
+        @users = Users::Query::Index.new(@current_user).call
         render json: { data: Users::Representer::UserRepresenter.for_collection.new(@users) }, status: :ok
       end
 
       #GET /users/:id
       def show
         begin
-          @user = User.find(params[:id])
+          @user = Users::Query::Show.new(params[:id], @current_user).call
           render :show, status: :ok
         rescue => e
           render json: { errors: e }, status: :not_found
@@ -31,9 +31,12 @@ module Api
 
       #DELETE /users/:id
       def destroy
-        @user = User.find(params[:id])
-        @user.destroy
-        head :no_content
+        begin 
+          Users::Operation::Destroy.new(params[:id]).call
+          render json: { Success: 'User deleted'}, status: :accepted
+        rescue => e
+          render json: { errors: e }, status: :not_found
+        end
       end
 
       private
