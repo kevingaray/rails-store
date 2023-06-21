@@ -20,4 +20,14 @@ class User < ApplicationRecord
     support == true
   end
 
+  # for soft delete function
+  def active_for_authentication?
+    super && !deleted_at
+  end
+
+  # provide a custom message for a deleted account
+  def inactive_message
+    !deleted_at ? super : :deleted_account
+  end
+  
 end
