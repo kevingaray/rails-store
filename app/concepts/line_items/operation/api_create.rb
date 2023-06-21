@@ -10,6 +10,7 @@ module LineItems
 
       def call
         item = Item.find(@item_id)
+        raise "Unable to find item with 'id': #{item.id}" if item.deleted_at
         raise 'Not enough Stock' if @quantity > item.stock
         create_or_find_item_in_cart(@current_cart,item,@quantity)
       end
