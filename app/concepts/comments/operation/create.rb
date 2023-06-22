@@ -9,6 +9,7 @@ module Comments
       end
 
       def call
+        raise "Couldn't comment your user" if @commentable.id == @user.id
         comment = @commentable.comments.new(@comment_params)
         comment.user = @user
         rate = comment.rate
