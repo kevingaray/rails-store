@@ -20,6 +20,13 @@ Rails.application.routes.draw do
   get 'line_items/:id' => 'line_items#show', as: 'line_item'
   delete 'line_items/:id' => 'line_items#destroy'
 
+    # stripe checkout sessions
+    post 'checkout/create', to: 'checkout#create'
+    get "success", to: "checkout#success"
+    get "cancel", to: "checkout#cancel"
+    # resources :webhooks, only: [:create]
+
+
   resources :orders, :only => [:show, :index, :new, :create] do
     resources :comments, module: :orders
   end
