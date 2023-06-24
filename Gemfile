@@ -48,3 +48,5 @@ gem 'multi_json', '~> 1.15'
 gem 'representable', '~> 3.0', '>= 3.0.4'
 # jobs
 gem "sidekiq", "~> 6.5"
+# payment
+gem 'stripe', '~> 5.39'
