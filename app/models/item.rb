@@ -13,4 +13,12 @@ class Item < ApplicationRecord
     attachable.variant :thumb, resize_to_limit: [220, 220]
   end
 
+  after_create do
+    if Rails.env.development? || Rails.env.production?
+      product = Stripe::Product.create(name:)
+      price = Stripe::Price.create(product:, unit_amount: (self.price * 100).to_i, currency: 'usd')
+      update(stripe_product_id: product.id, stripe_price_id: price.id)
+    end
+  end
+
 end

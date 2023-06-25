@@ -29,5 +29,12 @@ class User < ApplicationRecord
   def inactive_message
     !deleted_at ? super : :deleted_account
   end
-  
+
+  after_create do
+    if Rails.env.development? || Rails.env.production?
+      customer = Stripe::Customer.create(email:)
+      update(stripe_customer_id: customer.id)
+    end
+  end
+
 end
