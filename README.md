@@ -52,3 +52,10 @@ Visit the sidekiq url http://127.0.0.1:3000/admin/sidekiq
 
 # Test
 Minitest(default) with FactoryBot
+
+
+# Stripe Sync
+To sync all items to the stripe account, run 
+```
+rails stripe:sync_items
+```
