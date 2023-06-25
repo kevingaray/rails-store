@@ -24,7 +24,7 @@ Rails.application.routes.draw do
     post 'checkout/create', to: 'checkout#create'
     get "success", to: "checkout#success"
     get "cancel", to: "checkout#cancel"
-    # resources :webhooks, only: [:create]
+    resources :webhooks, only: [:create]
 
 
   resources :orders, :only => [:show, :index, :new, :create] do
