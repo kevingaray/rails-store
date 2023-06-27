@@ -1,0 +1,29 @@
+<h1>Hi, <%= @user.first_name %></h1>
+<p> Your payment was success by stripe </p>
+
+<table class="table">
+  <thead>
+    <tr> 
+      <th scope="col">Item</th>
+      <th scope="col">Price</th>
+      <th scope="col">Quantity</th>
+      <th scope="col">Total Price</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% total = 0 %>
+    <% @order.line_items.each do |line_item| %>
+      <tr>
+        <td><%= line_item.item.name %></td>
+        <td><%= number_to_currency(line_item.item.price) %></td>
+        <td><%= line_item.quantity %></td>
+        <td><%= number_to_currency(line_item.item.price*line_item.quantity) %></td>
+      </tr>
+      <% total += line_item.item.price*line_item.quantity %>
+    <% end %>
+  </tbody>
+</table>
+
+<h2> Total : <%= number_to_currency(total) %></h2>
+
+<p>Have a great day!</p>

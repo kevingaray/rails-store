@@ -15,6 +15,7 @@ module Orders
           li.cart_id = nil
         end
         order.save
+        CheckoutSuccessMailer.checkout_success_email(order).deliver_later
         order
       end
 
