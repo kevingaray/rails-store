@@ -62,15 +62,15 @@ rails stripe:sync_items
 
 # Screenshots
 Deploy version
-![image](https://github.com/kevingaray/rails-store/assets/48739137/e4c50536-47f6-4d24-9af4-4b7452e70830)
+![image](https://github.com/kevingaray/rails-store/assets/48739137/f9c29cf0-7723-44cc-a4ac-a29f9cc5d7b6)
 Item page with image on AWS
-![image](https://github.com/kevingaray/rails-store/assets/48739137/e3216dd1-4b85-4bec-927f-b839414662df)
+![image](https://github.com/kevingaray/rails-store/assets/48739137/6fb3e06d-ffa7-465e-aa6f-61e7937a3b82)
 Cart view
-![image](https://github.com/kevingaray/rails-store/assets/48739137/2810578e-4c69-4a61-b523-7779bce444c2)
+![image](https://github.com/kevingaray/rails-store/assets/48739137/6ae84dcd-02e8-419a-85fa-005cbe9215c1)
 Stripe view
-![image](https://github.com/kevingaray/rails-store/assets/48739137/09086667-2575-4235-b5b1-4fa64e91579e)
+![image](https://github.com/kevingaray/rails-store/assets/48739137/79109853-723b-4023-94ea-574e0bb9aac1)
 Insomnia   
-![image](https://github.com/kevingaray/rails-store/assets/48739137/ccabdd7c-b815-4a31-bf44-ca06adda0aa7)
-![image](https://github.com/kevingaray/rails-store/assets/48739137/1d9883ee-530d-481a-9025-10417867f860)
+![image](https://github.com/kevingaray/rails-store/assets/48739137/786a7781-77ca-488b-bf17-7b615d7fe006)
+
 
 
